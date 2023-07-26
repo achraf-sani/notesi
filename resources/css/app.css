@@ -1,0 +1,63 @@
+body{
+    background-color: #051824;
+    color: white;
+}
+.navbar{
+    background-color: #051824;
+    color: #fff;
+}
+a{
+    color:#ec7208;
+    text-decoration: none;
+}
+#grey{
+    color: rgb(194, 194, 194) ;
+}
+#elementName{
+    font-size:12px;  
+}
+.border{
+    border: red 2ch;
+    padding: 2%;
+    font-size: 20px;
+    margin-bottom: 5%;
+    text-align: center;
+}
+.homeHeader{
+    padding: 5% 0 2% 0; 
+}
+.homeHeaderBot{
+    justify-content: space-evenly;
+}
+
+#module{
+    background-color: #ca6004;
+}
+
+    footer{
+        text-align: center;
+        color: white;
+        padding: 2% 0 3% 0;
+    }
+
+.btnInu{
+    background-color: white;    
+}
+.btnInu:hover{
+    background-color: #ec7208;    
+
+}
+    
+.tableDark{
+    background-color: #051824;
+    color: white;
+    border-color: #ec7208;
+    
+}
+
+    @media screen and (max-width: 600px) {
+  
+  
+    footer{
+        font-size: 75%;
+    }}
