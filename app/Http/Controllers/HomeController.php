@@ -83,6 +83,7 @@ class HomeController extends Controller
                 {
                     // This is UTF-8
                     $moduleName = utf8_decode($moduleName);
+                    
                 }
                 $courseName = $mark->course->courseName;
                 if (preg_match('!!u', $courseName))
@@ -92,12 +93,12 @@ class HomeController extends Controller
                 }
 
                 if (!array_key_exists($module, $modules)) {
-
                     $modules += [
                         $module => [
                             "moduleName" => $moduleName,
                             "moduleCoeff" => $mark->course->module->moduleCoeff,
-                            "moduleMark" => round($mark->course->courseCoeff * $mark->mark / 100, 2),
+                            "moduleMark" => round($mark->course->courseCoeff * $mark->mark / 100, 2) ,
+                            "isRatt" => $mark->ratt,
                             "courses" => [
                                 [
                                     "courseName" => $courseName,
@@ -109,6 +110,9 @@ class HomeController extends Controller
                     ];
                 }
                 else {
+                    if ($mark->ratt){
+                        $modules[$module]["isRatt"] = $mark->ratt;
+                    }
                     array_push($modules[$module]["courses"],
                                 [
                                     "courseName" => $courseName,
@@ -117,6 +121,11 @@ class HomeController extends Controller
                                 ]);
                     $modules[$module]["moduleMark"] += round($mark->course->courseCoeff * $mark->mark / 100, 2);
                 }
+            }
+        }
+        foreach ($modules as $module => $modulev) {
+            if(($modulev["isRatt"]) && ($modulev["moduleMark"] > 12)){
+                $modules[$module]["moduleMark"] = 12;
             }
         }
         ksort($modules);

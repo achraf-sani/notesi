@@ -87,17 +87,31 @@ class MarksController extends Controller
                     
                     $markId = $studentId . "." . $courseId;
                     
-
-                    $insert_courses = Mark::dontCache()->updateOrCreate(
-                        [
-                            'markId' => $markId,//find by markId
-                        ],
-                        [
-                            'courseId' => $courseId,
-                            'studentId' => $studentId,
-                            'mark' => $mark,//if exists update mark
-                        ]
-                    );
+                    if ($request->input("isRatt") == "0" ){
+                        $insert_courses = Mark::dontCache()->updateOrCreate(
+                            [
+                                'markId' => $markId,//find by markId
+                            ],
+                            [
+                                'courseId' => $courseId,
+                                'studentId' => $studentId,
+                                'mark' => $mark,//if exists update mark
+                                'ratt' => false,
+                            ]
+                        );
+                    }else{
+                        $insert_courses = Mark::dontCache()->updateOrCreate(
+                            [
+                                'markId' => $markId,//find by markId
+                            ],
+                            [
+                                'courseId' => $courseId,
+                                'studentId' => $studentId,
+                                'mark' => $mark,//if exists update mark
+                                'ratt' => true,
+                            ]
+                        );
+                    }
                     if(!$insert_courses->wasRecentlyCreated && $insert_courses->wasChanged()){
                         // updateOrCreate performed an update
                         array_push($updated, $insert_courses);

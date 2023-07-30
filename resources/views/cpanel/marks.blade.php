@@ -23,6 +23,9 @@
                             <!--<input type="file" name="file" accept=".csv" required>-->
                             <input type="file" name="files[]" accept=".csv" multiple required>
                             <input type = "submit" name = "submit" value = "Update Marks">
+                            <label for="fname">Ratt Marks</label>
+                            <input type="hidden" name="isRatt" value="0" />
+                            <input type = "checkbox" name="isRatt" value="1" >
                         </form>
 
                         <hr>
@@ -38,6 +41,7 @@
                                 <th scope="col">Student ID</th>
                                 <th scope="col">Course name</th>
                                 <th scope="col">Mark</th>
+                                <th scope="col">Ratt</th>
                               </tr>
                             </thead>
         
@@ -57,6 +61,7 @@
                                         <td>{{$create->studentId}}</td>
                                         <td>{{$create->courseId}}</td>
                                         <td>{{$create->mark}}</td>
+                                        <td>{{$create->ratt}}</td>
                                     </tr>
                                     @endforeach
                                 @endif
@@ -75,6 +80,7 @@
                                         <td>{{$update->studentId}}</td>
                                         <td>{{$update->courseId}}</td>
                                         <td>{{$update->mark}}</td>
+                                        <td>{{$update->ratt}}</td>
                                     </tr>
                                     @endforeach
                                 @endif  
