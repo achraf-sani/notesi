@@ -24,6 +24,7 @@ class Mark extends Model
         'courseId',
         'studentId',
         'mark',
+        'ratt',
     ];
 
      /**
