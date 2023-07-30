@@ -52,7 +52,11 @@
                             @if($module['moduleMark']<12)
                               <td><div style="color:rgb(138, 6, 6);"><b>{{$module['moduleMark']    }}</b></div></td>
                               @else 
-                              <td><div style="color:#;"><b>{{$module['moduleMark']    }}</b></div></td>
+                                @if($module['isRatt'])
+                                  <td><div style="color:#f9ff00;"><b>{{$module['moduleMark']    }}</b></div></td>
+                                @else
+                                  <td><div style="color:#;"><b>{{$module['moduleMark']    }} </b></div></td>
+                                @endif
                               @endif
                           </tr>
                           
