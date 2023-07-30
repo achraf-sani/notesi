@@ -2,7 +2,7 @@
 A grades management system made to simplify the process of consulting marks for students.
 
 ## Running local
-use a pre-build image that contain php8.1 and php extensions (dom, xml etc...) and don't forget to insrall
+use a pre-built image that contain php8.1 and php extensions (dom, xml etc...) and don't forget to insrall
 php8.1-mysql in case you encouter a driver error.
 
 start the app container using the following command : docker run -it -w /notesi -v ~/notesi:/notesi -p 8000:8000 \
