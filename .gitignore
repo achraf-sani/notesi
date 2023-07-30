@@ -1,3 +1,5 @@
+database_backup.sql
+/mysql_data/
 /node_modules
 /public/hot
 /public/storage
@@ -19,3 +21,4 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+
