@@ -35,7 +35,7 @@ class MarksController extends Controller
         //TO DO FOR 9ssi
         return redirect()->route("errorPage")->withErrors(['msg' =>"You don't have permission to access this page.!"]);
     }
-    
+
     /**
      * function to parse uploaded file and update database.
      */
@@ -54,7 +54,7 @@ class MarksController extends Controller
                 $moduleAbbrev = $semester_majorAbbrev_moduleAbbrev_elementAbbrev_promo[2];
                 $courseAbbrev = $semester_majorAbbrev_moduleAbbrev_elementAbbrev_promo[3];
                 $promotion = intval($semester_majorAbbrev_moduleAbbrev_elementAbbrev_promo[4]);
-                //get semester id 
+                //get semester id
                 $semesterId = Semester::where('semesterName', $semesterName)->first()->semesterId;
                 //dd($semesterId);
                 //get Major Id
@@ -67,7 +67,7 @@ class MarksController extends Controller
                 $filePath = $file->getRealPath();
                 $file_open = fopen($filePath, "r");
 
-                
+
 
                 //DB::enableQueryLog();
                 while (($column = fgetcsv($file_open, 10000, ",")) !== False){
@@ -84,9 +84,9 @@ class MarksController extends Controller
                     }
                     //dd($studentId);
                     //dd($fullName, $studentId, $mark);
-                    
+
                     $markId = $studentId . "." . $courseId;
-                    
+
                     if ($request->input("isRatt") == "0" ){
                         $insert_courses = Mark::dontCache()->updateOrCreate(
                             [
@@ -96,7 +96,7 @@ class MarksController extends Controller
                                 'courseId' => $courseId,
                                 'studentId' => $studentId,
                                 'mark' => $mark,//if exists update mark
-                                'ratt' => false,
+                                'ratt' => 0,
                             ]
                         );
                     }else{
@@ -108,7 +108,7 @@ class MarksController extends Controller
                                 'courseId' => $courseId,
                                 'studentId' => $studentId,
                                 'mark' => $mark,//if exists update mark
-                                'ratt' => true,
+                                'ratt' => 1,
                             ]
                         );
                     }
@@ -120,11 +120,11 @@ class MarksController extends Controller
                     if($insert_courses->wasRecentlyCreated){
                     // updateOrCreate performed create
                         array_push($created, $insert_courses);
-                    }   
-                    
+                    }
+
                 }
                // dd(DB::getQueryLog());
-            
+
             }
             //updates done flush cache
             Mark::flushQueryCache();
@@ -135,6 +135,6 @@ class MarksController extends Controller
             return redirect()->route("errorPage")->withErrors(['msg' => "You don't have permission to access this page.!"]);
         }
 
-        
+
     }
 }
